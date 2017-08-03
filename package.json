@@ -21,8 +21,10 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@types/web-bluetooth": "0.0.2",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.1",
+    "soundfont-player": "^0.10.6",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
