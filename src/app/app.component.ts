@@ -13,18 +13,6 @@ interface Sample {
 
 const MIDI_SERVICE_ID = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
 const MIDI_CHARACTERISTIC = '7772e5db-3868-4112-a1a9-f2669d106bf3';
-const MIDI_GUITAR_INSTRUMENTS = [
-  'acoustic_guitar_nylon',
-  'acoustic_guitar_steel',
-  'distortion_guitar',
-  'electric_guitar_clean',
-  'electric_guitar_jazz',
-  'electric_guitar_muted',
-  'guitar_fret_noise',
-  'guitar_harmonics',
-  'overdriven_guitar'
-];
-const MIDI_INSTRUMENT = MIDI_GUITAR_INSTRUMENTS[0];
 
 @Component({
   selector: 'app-root',
@@ -34,7 +22,7 @@ const MIDI_INSTRUMENT = MIDI_GUITAR_INSTRUMENTS[0];
 export class AppComponent {
 
   audioContext = new AudioContext();
-  instrument = Soundfont.instrument(this.audioContext, MIDI_INSTRUMENT);
+  instrument = null;
   characteristic = null;
   notes$ = null;
   playing: {[key: number]: any} = {};
@@ -96,6 +84,10 @@ export class AppComponent {
       this.playing[note].stop();
       this.playing[note] = null;
     }
+  }
+
+  changeInstrument (instrumentId) {
+    this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
   }
 
   async scan() {

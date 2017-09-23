@@ -1,0 +1,5 @@
+<select name="instrument" (change)="changeInstrument($event.target.value)">
+  <option *ngFor="let instrument of instruments" [value]="instrument.id">
+    {{ instrument.name }}
+  </option>
+</select>
