@@ -26,19 +26,11 @@ export class AppComponent {
   characteristic = null;
   notes$ = null;
   playing: {[key: number]: any} = {};
-  noteFilters = [
-    // Only notes between 30 and 79 are musical notes, the rest are artifacts and 
-    // controller commands. Notes in the 80 range are created from pressing the 
-    // controller buttons. Notes in the 100 range are an artifact created by pressing 
-    // the fretboard without strumming the string.
-    ({ note }) => note >= 30 && 79 >= note
-  ];
 
   async observeNotes () {
     this.notes$ = Observable
       .fromEvent(this.characteristic, 'characteristicvaluechanged')
       .mergeMap(this.bufferToSamples)
-      .filter(sample => this.filterMusicalNotes(sample))
       .do(sample => this.onMidi(sample))
       .subscribe(console.log);
   }
@@ -52,11 +44,6 @@ export class AppComponent {
       samples.push({ header, timestamp, status, note, velocity }); 
     }
     return samples;
-  }
-
-  filterMusicalNotes (sample: Sample) {
-    return this.noteFilters
-      .every(filter => filter(sample))
   }
 
   onMidi (sample: Sample) {
