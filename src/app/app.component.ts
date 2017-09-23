@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import Soundfont from 'soundfont-player';
 
 interface Sample {
-  header: number,
-  timestamp: number,
-  status: number,
-  note: number,
-  velocity: number
-};
+  header: number;
+  timestamp: number;
+  status: number;
+  note: number;
+  velocity: number;
+}
 
 const MIDI_SERVICE_ID = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
 const MIDI_CHARACTERISTIC = '7772e5db-3868-4112-a1a9-f2669d106bf3';
@@ -36,12 +36,12 @@ export class AppComponent {
   }
 
   bufferToSamples (event) {
-    let samples = [];
+    const samples = [];
     const buffer = new Uint8Array(event.target.value.buffer);
     const [ header, ...midi ] = Array.from(buffer);
     while (midi.length) {
       const [ timestamp, status, note, velocity ] = midi.splice(0, 4);
-      samples.push({ header, timestamp, status, note, velocity }); 
+      samples.push({ header, timestamp, status, note, velocity });
     }
     return samples;
   }
