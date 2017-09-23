@@ -32,7 +32,7 @@ export class AppComponent {
       return this.stopNote(note);
     }
     const guitar = await this.instrument;
-    this.playing[note] = guitar.play(note);
+    this.playing[note] = guitar.play(note, null, {gain: velocity / 127.0});
   }
 
   stopNote(note: number) {
