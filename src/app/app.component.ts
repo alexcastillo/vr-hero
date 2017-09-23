@@ -25,10 +25,21 @@ export class AppComponent {
 
   audioContext = new AudioContext();
   instrument = Soundfont.instrument(this.audioContext, MIDI_INSTRUMENT);
+  playing: {[key: number]: any} = {};
 
-  async playNote (note) {
+  async playNote (note: number, velocity: number) {
+    if (!velocity) {
+      return this.stopNote(note);
+    }
     const guitar = await this.instrument;
-    guitar.play(note);
+    this.playing[note] = guitar.play(note);
+  }
+
+  stopNote(note: number) {
+    if (this.playing[note]) {
+      this.playing[note].stop();
+      this.playing[note] = null;
+    }
   }
 
   async scan() {
@@ -41,14 +52,13 @@ export class AppComponent {
 
     characteristic.addEventListener('characteristicvaluechanged', () => {
       const buffer = new Uint8Array(characteristic.value.buffer);
-      const [ header, timestamp, status, note, velocity ] = Array.from(buffer);
+      const [ header, timestamp, status, d1, d2 ] = Array.from(buffer);
       console.log('new data', buffer);
-      // Notes higher than 100 seem to be artifact created 
-      // by lifing the hand from the freboard
-      // Still need to filter out "notes" created by pressing 
-      // buttons on the controller
-      if (note <= 100) {
-        this.playNote(note);
+      if (status >= 0x80 && status < 0x90) {
+        this.stopNote(d1);
+      }
+      if (status >= 0x90 && status < 0xa0) {
+        this.playNote(d1, d2);
       }
     });
 
