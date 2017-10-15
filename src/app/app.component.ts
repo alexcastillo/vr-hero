@@ -1,18 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-
+import Jamstik from 'jamstik';
 import Soundfont from 'soundfont-player';
-
-interface Sample {
-  header: number;
-  timestamp: number;
-  status: number;
-  note: number;
-  velocity: number;
-}
-
-const MIDI_SERVICE_ID = '03b80e5a-ede8-4b33-a751-6ce34ec4c700';
-const MIDI_CHARACTERISTIC = '7772e5db-3868-4112-a1a9-f2669d106bf3';
 
 @Component({
   selector: 'app-root',
@@ -22,31 +11,24 @@ const MIDI_CHARACTERISTIC = '7772e5db-3868-4112-a1a9-f2669d106bf3';
 export class AppComponent {
 
   audioContext = new AudioContext();
+  jamstik = new Jamstik();
   instrument = null;
-  characteristic = null;
-  notes$ = null;
   playing: {[key: number]: any} = {};
 
-  async observeNotes () {
-    this.notes$ = Observable
-      .fromEvent(this.characteristic, 'characteristicvaluechanged')
-      .mergeMap(this.bufferToSamples)
-      .do(sample => this.onMidi(sample))
-      .subscribe(console.log);
+  async scan() {
+    await this.jamstik.connect();
+    this.onConnect();
   }
 
-  bufferToSamples (event) {
-    const samples = [];
-    const buffer = new Uint8Array(event.target.value.buffer);
-    const [ header, ...midi ] = Array.from(buffer);
-    while (midi.length) {
-      const [ timestamp, status, note, velocity ] = midi.splice(0, 4);
-      samples.push({ header, timestamp, status, note, velocity });
-    }
-    return samples;
+  onConnect () {
+    this.jamstik.midi
+      .subscribe(sample => {
+        this.onMidi(sample);
+        console.log(sample);
+      });
   }
 
-  onMidi (sample: Sample) {
+  onMidi (sample) {
     const { status, note, velocity } = sample;
     if (status >= 0x80 && status < 0x90) {
       this.stopNote(sample);
@@ -56,7 +38,7 @@ export class AppComponent {
     }
   }
 
-  async playNote (sample: Sample) {
+  async playNote (sample) {
     const { note, velocity } = sample;
     if (!velocity) {
       return this.stopNote(sample);
@@ -65,7 +47,7 @@ export class AppComponent {
     this.playing[note] = guitar.play(note, null, {gain: velocity / 127.0});
   }
 
-  stopNote(sample: Sample) {
+  stopNote(sample) {
     const { note } = sample;
     if (this.playing[note]) {
       this.playing[note].stop();
@@ -77,14 +59,4 @@ export class AppComponent {
     this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
   }
 
-  async scan() {
-    const device = await navigator.bluetooth.requestDevice({
-      filters: [{ services: [MIDI_SERVICE_ID] }]
-    });
-    const gatt = await device.gatt.connect();
-    const service = await gatt.getPrimaryService(MIDI_SERVICE_ID);
-    this.characteristic = await service.getCharacteristic(MIDI_CHARACTERISTIC);
-    this.characteristic.startNotifications();
-    this.observeNotes();
-  }
 }
