@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import * as firebase from 'firebase';
 
+const EVENT_TIMEOUT = 4000;
+
 const config = {
   apiKey: 'AIzaSyAeef6ppzfZI3kLGiUkXPrE2sBGeyochnY',
   authDomain: 'vr-hero-app.firebaseapp.com',
@@ -28,6 +30,8 @@ export class RealtimeService {
   }
 
   addEvent(e: INoteEvent) {
-    this.songRef.push(e);
+    const ref = this.songRef.push(e);
+    ref.onDisconnect().remove();
+    setTimeout(() => ref.remove(), EVENT_TIMEOUT);
   }
 }
