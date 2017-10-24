@@ -1,3 +1,4 @@
+import { RealtimeService } from './realtime.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,7 +13,7 @@ import { InstrumentsComponent } from './instruments/instruments.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [RealtimeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

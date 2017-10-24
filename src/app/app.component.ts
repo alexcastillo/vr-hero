@@ -1,3 +1,4 @@
+import { RealtimeService } from './realtime.service';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import Jamstik from 'jamstik';
@@ -15,6 +16,8 @@ export class AppComponent {
   instrument = null;
   playing: {[key: number]: any} = {};
 
+  constructor(private realtime: RealtimeService) {}
+
   async scan() {
     await this.jamstik.connect();
     this.onConnect();
@@ -31,6 +34,10 @@ export class AppComponent {
   onMidi (sample) {
     const { status, note, velocity } = sample;
     if (status >= 0x80 && status < 0x90) {
+      this.realtime.addEvent({
+        stringId: 1,
+        note: 50
+      });
       this.stopNote(sample);
     }
     if (status >= 0x90 && status < 0xa0) {
