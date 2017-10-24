@@ -27,21 +27,21 @@ export class AppComponent {
     this.jamstik.midi
       .subscribe(sample => {
         this.onMidi(sample);
-        console.log(sample);
       });
   }
 
   onMidi (sample) {
     const { status, note, velocity } = sample;
     if (status >= 0x80 && status < 0x90) {
-      this.realtime.addEvent({
-        stringId: 1,
-        note: 50
-      });
       this.stopNote(sample);
     }
     if (status >= 0x90 && status < 0xa0) {
       this.playNote(sample);
+      this.realtime.addEvent({
+        stringId: 1,
+        note: 50
+      });
+      console.log(sample);
     }
   }
 
