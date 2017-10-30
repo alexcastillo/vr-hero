@@ -1,8 +1,9 @@
 import { RealtimeService } from './realtime.service';
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import Jamstik from 'jamstik';
 import Soundfont from 'soundfont-player';
+
+import track01 from '../assets/tracks/track-01';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +13,17 @@ import Soundfont from 'soundfont-player';
 export class AppComponent {
 
   audioContext = new AudioContext();
+  backingTrack = new Audio('./assets/backing-tracks/track-01.mp3');
   jamstik = new Jamstik();
   instrument = null;
   playing: {[key: number]: any} = {};
+  recording = {
+    startTime: null,
+    data: []
+  };
+  demoRecording = track01;
+  // Standard tunning
+  firstFrets = [64, 59, 55, 50, 45, 40];
 
   constructor(private realtime: RealtimeService) {}
 
@@ -23,41 +32,41 @@ export class AppComponent {
     this.onConnect();
   }
 
-  firstFrets = [52, 47, 43, 38, 33 , 28];
-
-  // @TODO: Need to add startTime in milliseconds from the song start time
-  demoSong = [
-    { header: 189, timestamp: 228, status: 147, note: 40, velocity: 105 },
-    { header: 135, timestamp: 147, status: 147, note: 40, velocity: 81 },
-    { header: 140, timestamp: 193, status: 147, note: 43, velocity: 87 },
-    { header: 146, timestamp: 179, status: 147, note: 40, velocity: 83 },
-    { header: 155, timestamp: 241, status: 147, note: 38, velocity: 99 },
-    { header: 163, timestamp: 245, status: 148, note: 36, velocity: 70 },
-    { header: 183, timestamp: 129, status: 148, note: 35, velocity: 102 }
-  ];
-
   onConnect () {
     this.jamstik.midi
       .subscribe(sample => {
-        this.onMidi(sample);
+        this.onMidi(this.addMetadata(sample));
       });
   }
 
-  onMidi (sample) {
+  addMetadata (sample) {
     const { status, note, velocity } = sample;
     const stringId = status - 0x90;
     const fret = note - this.firstFrets[stringId];
+    const playedAt = Date.now();
+    return { ...sample, fret, stringId, playedAt };
+  }
 
-    if (status >= 0x80 && status < 0x90) {
+  databaseSync (sample) {
+    this.realtime.addEvent(sample);
+  }
+
+  isActiveNote ({ status }) {
+    return status >= 0x90 && status < 0xa0;
+  }
+
+  isInactiveNote ({ status }) {
+    return status >= 0x80 && status < 0x90;
+  }
+
+  onMidi (sample) {
+    const { status } = sample;
+    if (this.isInactiveNote(sample)) {
       this.stopNote(sample);
     }
-    if (status >= 0x90 && status < 0xa0) {
+    if (this.isActiveNote(sample)) {
       this.playNote(sample);
-      this.realtime.addEvent({
-        note,
-        fret,
-        stringId
-      });
+      this.databaseSync(sample);
       console.log(sample);
     }
   }
@@ -81,6 +90,36 @@ export class AppComponent {
 
   changeInstrument (instrumentId) {
     this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
+  }
+
+  startRecording () {
+    this.recording.data.length = 0;
+    this.recording.startTime = Date.now();
+    this.backingTrack.play();
+
+    this.jamstik.midi
+      .subscribe(data => {
+        const sample = this.addMetadata(data);
+        if (this.isActiveNote(sample)) {
+          this.recording.data.push(sample);
+        }
+      });
+  }
+
+  stopRecording () {
+    this.backingTrack.pause();
+    console.log('recording', JSON.stringify(this.recording, null, 2));
+  }
+
+  playRecording (recording) {
+    recording.data
+      .forEach(sample => {
+        const playNoteAt =  sample.playedAt - recording.startTime;
+        const timeout = setTimeout(() => {
+          this.playNote(sample);
+          clearTimeout(timeout);
+        }, playNoteAt);
+      });
   }
 
 }

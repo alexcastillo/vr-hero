@@ -1,5 +1,8 @@
 <div>
   <button (click)="scan()">Connect!</button>
+  <button (click)="startRecording()">Start Recording</button>
+  <button (click)="stopRecording()">Stop Recording</button>
+  <button (click)="playRecording(demoRecording)">Play Demo Recording</button>
   <instruments (onChange)="changeInstrument($event)"></instruments>
 </div>
 
