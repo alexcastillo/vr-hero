@@ -107,8 +107,9 @@ export class AppComponent {
     this.jamstik.midi
       .subscribe(data => {
         const sample = this.addMetadata(data);
+        const id = this.recording.data.length;
         if (this.isActiveNote(sample)) {
-          this.recording.data.push(sample);
+          this.recording.data.push({ ...sample, id });
         }
       });
   }

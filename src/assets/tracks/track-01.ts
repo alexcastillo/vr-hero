@@ -9,7 +9,8 @@ export default {
       "velocity": 93,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335578881
+      "playedAt": 1509335578881,
+      "id": 0
     },
     {
       "header": 156,
@@ -19,7 +20,8 @@ export default {
       "velocity": 99,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335579633
+      "playedAt": 1509335579633,
+      "id": 1
     },
     {
       "header": 158,
@@ -29,7 +31,8 @@ export default {
       "velocity": 99,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335579880
+      "playedAt": 1509335579880,
+      "id": 2
     },
     {
       "header": 161,
@@ -39,7 +42,8 @@ export default {
       "velocity": 103,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335580273
+      "playedAt": 1509335580273,
+      "id": 3
     },
     {
       "header": 164,
@@ -49,7 +53,8 @@ export default {
       "velocity": 77,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335580634
+      "playedAt": 1509335580634,
+      "id": 4
     },
     {
       "header": 167,
@@ -59,7 +64,8 @@ export default {
       "velocity": 80,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335580971
+      "playedAt": 1509335580971,
+      "id": 5
     },
     {
       "header": 174,
@@ -69,7 +75,8 @@ export default {
       "velocity": 101,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335581961
+      "playedAt": 1509335581961,
+      "id": 6
     },
     {
       "header": 183,
@@ -79,7 +86,8 @@ export default {
       "velocity": 125,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335583007
+      "playedAt": 1509335583007,
+      "id": 7
     },
     {
       "header": 189,
@@ -89,7 +97,8 @@ export default {
       "velocity": 125,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335583795
+      "playedAt": 1509335583795,
+      "id": 8
     },
     {
       "header": 191,
@@ -99,7 +108,8 @@ export default {
       "velocity": 121,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335584065
+      "playedAt": 1509335584065,
+      "id": 9
     },
     {
       "header": 130,
@@ -109,7 +119,8 @@ export default {
       "velocity": 109,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335584447
+      "playedAt": 1509335584447,
+      "id": 10
     },
     {
       "header": 133,
@@ -119,7 +130,8 @@ export default {
       "velocity": 99,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335584807
+      "playedAt": 1509335584807,
+      "id": 11
     },
     {
       "header": 135,
@@ -129,7 +141,8 @@ export default {
       "velocity": 120,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335585100
+      "playedAt": 1509335585100,
+      "id": 12
     },
     {
       "header": 143,
@@ -139,7 +152,8 @@ export default {
       "velocity": 91,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335586134
+      "playedAt": 1509335586134,
+      "id": 13
     },
     {
       "header": 151,
@@ -149,7 +163,8 @@ export default {
       "velocity": 113,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335587192
+      "playedAt": 1509335587192,
+      "id": 14
     },
     {
       "header": 157,
@@ -159,7 +174,8 @@ export default {
       "velocity": 107,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335587913
+      "playedAt": 1509335587913,
+      "id": 15
     },
     {
       "header": 159,
@@ -169,7 +185,8 @@ export default {
       "velocity": 107,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335588160
+      "playedAt": 1509335588160,
+      "id": 16
     },
     {
       "header": 162,
@@ -179,7 +196,8 @@ export default {
       "velocity": 99,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335588553
+      "playedAt": 1509335588553,
+      "id": 17
     },
     {
       "header": 165,
@@ -189,7 +207,8 @@ export default {
       "velocity": 95,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335588913
+      "playedAt": 1509335588913,
+      "id": 18
     },
     {
       "header": 167,
@@ -199,7 +218,8 @@ export default {
       "velocity": 108,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335589229
+      "playedAt": 1509335589229,
+      "id": 19
     },
     {
       "header": 175,
@@ -209,7 +229,8 @@ export default {
       "velocity": 112,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335590264
+      "playedAt": 1509335590264,
+      "id": 20
     },
     {
       "header": 183,
@@ -219,7 +240,8 @@ export default {
       "velocity": 125,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335591299
+      "playedAt": 1509335591299,
+      "id": 21
     },
     {
       "header": 190,
@@ -229,7 +251,8 @@ export default {
       "velocity": 111,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335592076
+      "playedAt": 1509335592076,
+      "id": 22
     },
     {
       "header": 191,
@@ -239,7 +262,8 @@ export default {
       "velocity": 111,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335592311
+      "playedAt": 1509335592311,
+      "id": 23
     },
     {
       "header": 131,
@@ -249,7 +273,8 @@ export default {
       "velocity": 99,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335592750
+      "playedAt": 1509335592750,
+      "id": 24
     },
     {
       "header": 133,
@@ -259,7 +284,8 @@ export default {
       "velocity": 97,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335593064
+      "playedAt": 1509335593064,
+      "id": 25
     },
     {
       "header": 136,
@@ -269,7 +295,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335593358
+      "playedAt": 1509335593358,
+      "id": 26
     },
     {
       "header": 144,
@@ -279,7 +306,8 @@ export default {
       "velocity": 106,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335594404
+      "playedAt": 1509335594404,
+      "id": 27
     },
     {
       "header": 152,
@@ -289,7 +317,8 @@ export default {
       "velocity": 113,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335595416
+      "playedAt": 1509335595416,
+      "id": 28
     },
     {
       "header": 158,
@@ -299,7 +328,8 @@ export default {
       "velocity": 111,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335596181
+      "playedAt": 1509335596181,
+      "id": 29
     },
     {
       "header": 159,
@@ -309,7 +339,8 @@ export default {
       "velocity": 111,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335596419
+      "playedAt": 1509335596419,
+      "id": 30
     },
     {
       "header": 162,
@@ -319,7 +350,8 @@ export default {
       "velocity": 111,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335596811
+      "playedAt": 1509335596811,
+      "id": 31
     },
     {
       "header": 165,
@@ -329,7 +361,8 @@ export default {
       "velocity": 107,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335597182
+      "playedAt": 1509335597182,
+      "id": 32
     },
     {
       "header": 168,
@@ -339,7 +372,8 @@ export default {
       "velocity": 121,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335597486
+      "playedAt": 1509335597486,
+      "id": 33
     },
     {
       "header": 176,
@@ -349,7 +383,8 @@ export default {
       "velocity": 89,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335598544
+      "playedAt": 1509335598544,
+      "id": 34
     },
     {
       "header": 184,
@@ -359,7 +394,8 @@ export default {
       "velocity": 111,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335599613
+      "playedAt": 1509335599613,
+      "id": 35
     },
     {
       "header": 190,
@@ -369,7 +405,8 @@ export default {
       "velocity": 103,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335600366
+      "playedAt": 1509335600366,
+      "id": 36
     },
     {
       "header": 128,
@@ -379,7 +416,8 @@ export default {
       "velocity": 103,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335600568
+      "playedAt": 1509335600568,
+      "id": 37
     },
     {
       "header": 131,
@@ -389,7 +427,8 @@ export default {
       "velocity": 113,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335600974
+      "playedAt": 1509335600974,
+      "id": 38
     },
     {
       "header": 134,
@@ -399,7 +438,8 @@ export default {
       "velocity": 101,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335601345
+      "playedAt": 1509335601345,
+      "id": 39
     },
     {
       "header": 136,
@@ -409,7 +449,8 @@ export default {
       "velocity": 104,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335601649
+      "playedAt": 1509335601649,
+      "id": 40
     },
     {
       "header": 144,
@@ -419,7 +460,8 @@ export default {
       "velocity": 102,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335602673
+      "playedAt": 1509335602673,
+      "id": 41
     },
     {
       "header": 152,
@@ -429,7 +471,8 @@ export default {
       "velocity": 119,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335603708
+      "playedAt": 1509335603708,
+      "id": 42
     },
     {
       "header": 131,
@@ -439,7 +482,8 @@ export default {
       "velocity": 109,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335604484
+      "playedAt": 1509335604484,
+      "id": 43
     },
     {
       "header": 133,
@@ -449,7 +493,8 @@ export default {
       "velocity": 125,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335604754
+      "playedAt": 1509335604754,
+      "id": 44
     },
     {
       "header": 136,
@@ -459,7 +504,8 @@ export default {
       "velocity": 109,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335605136
+      "playedAt": 1509335605136,
+      "id": 45
     },
     {
       "header": 139,
@@ -469,7 +515,8 @@ export default {
       "velocity": 81,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335605485
+      "playedAt": 1509335605485,
+      "id": 46
     },
     {
       "header": 141,
@@ -479,7 +526,8 @@ export default {
       "velocity": 110,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335605800
+      "playedAt": 1509335605800,
+      "id": 47
     },
     {
       "header": 149,
@@ -489,7 +537,8 @@ export default {
       "velocity": 89,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335606835
+      "playedAt": 1509335606835,
+      "id": 48
     },
     {
       "header": 157,
@@ -499,7 +548,8 @@ export default {
       "velocity": 99,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335607836
+      "playedAt": 1509335607836,
+      "id": 49
     },
     {
       "header": 163,
@@ -509,7 +559,8 @@ export default {
       "velocity": 103,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335608602
+      "playedAt": 1509335608602,
+      "id": 50
     },
     {
       "header": 165,
@@ -519,7 +570,8 @@ export default {
       "velocity": 103,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335608826
+      "playedAt": 1509335608826,
+      "id": 51
     },
     {
       "header": 168,
@@ -529,7 +581,8 @@ export default {
       "velocity": 97,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335609265
+      "playedAt": 1509335609265,
+      "id": 52
     },
     {
       "header": 171,
@@ -539,7 +592,8 @@ export default {
       "velocity": 75,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335609636
+      "playedAt": 1509335609636,
+      "id": 53
     },
     {
       "header": 174,
@@ -549,7 +603,8 @@ export default {
       "velocity": 106,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335609929
+      "playedAt": 1509335609929,
+      "id": 54
     },
     {
       "header": 181,
@@ -559,7 +614,8 @@ export default {
       "velocity": 112,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335610941
+      "playedAt": 1509335610941,
+      "id": 55
     },
     {
       "header": 190,
@@ -569,7 +625,8 @@ export default {
       "velocity": 101,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335611976
+      "playedAt": 1509335611976,
+      "id": 56
     },
     {
       "header": 132,
@@ -579,7 +636,8 @@ export default {
       "velocity": 109,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335612752
+      "playedAt": 1509335612752,
+      "id": 57
     },
     {
       "header": 134,
@@ -589,7 +647,8 @@ export default {
       "velocity": 125,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335613034
+      "playedAt": 1509335613034,
+      "id": 58
     },
     {
       "header": 137,
@@ -599,7 +658,8 @@ export default {
       "velocity": 109,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335613405
+      "playedAt": 1509335613405,
+      "id": 59
     },
     {
       "header": 139,
@@ -609,7 +669,8 @@ export default {
       "velocity": 75,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335613753
+      "playedAt": 1509335613753,
+      "id": 60
     },
     {
       "header": 142,
@@ -619,7 +680,8 @@ export default {
       "velocity": 91,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335614069
+      "playedAt": 1509335614069,
+      "id": 61
     },
     {
       "header": 150,
@@ -629,7 +691,8 @@ export default {
       "velocity": 102,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335615104
+      "playedAt": 1509335615104,
+      "id": 62
     },
     {
       "header": 158,
@@ -639,7 +702,8 @@ export default {
       "velocity": 101,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335616128
+      "playedAt": 1509335616128,
+      "id": 63
     },
     {
       "header": 164,
@@ -649,7 +713,8 @@ export default {
       "velocity": 83,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335616870
+      "playedAt": 1509335616870,
+      "id": 64
     },
     {
       "header": 166,
@@ -659,7 +724,8 @@ export default {
       "velocity": 83,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335617118
+      "playedAt": 1509335617118,
+      "id": 65
     },
     {
       "header": 169,
@@ -669,7 +735,8 @@ export default {
       "velocity": 103,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335617534
+      "playedAt": 1509335617534,
+      "id": 66
     },
     {
       "header": 172,
@@ -679,7 +746,8 @@ export default {
       "velocity": 79,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335617883
+      "playedAt": 1509335617883,
+      "id": 67
     },
     {
       "header": 174,
@@ -689,7 +757,8 @@ export default {
       "velocity": 87,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335618197
+      "playedAt": 1509335618197,
+      "id": 68
     },
     {
       "header": 182,
@@ -699,7 +768,8 @@ export default {
       "velocity": 102,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335619244
+      "playedAt": 1509335619244,
+      "id": 69
     },
     {
       "header": 190,
@@ -709,7 +779,8 @@ export default {
       "velocity": 89,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335620268
+      "playedAt": 1509335620268,
+      "id": 70
     },
     {
       "header": 132,
@@ -719,7 +790,8 @@ export default {
       "velocity": 95,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335621033
+      "playedAt": 1509335621033,
+      "id": 71
     },
     {
       "header": 134,
@@ -729,7 +801,8 @@ export default {
       "velocity": 95,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335621285
+      "playedAt": 1509335621285,
+      "id": 72
     },
     {
       "header": 137,
@@ -739,7 +812,8 @@ export default {
       "velocity": 101,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335621651
+      "playedAt": 1509335621651,
+      "id": 73
     },
     {
       "header": 140,
@@ -749,7 +823,8 @@ export default {
       "velocity": 79,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335622000
+      "playedAt": 1509335622000,
+      "id": 74
     },
     {
       "header": 142,
@@ -759,7 +834,8 @@ export default {
       "velocity": 99,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335622338
+      "playedAt": 1509335622338,
+      "id": 75
     },
     {
       "header": 151,
@@ -769,7 +845,8 @@ export default {
       "velocity": 104,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335623373
+      "playedAt": 1509335623373,
+      "id": 76
     },
     {
       "header": 159,
@@ -779,7 +856,8 @@ export default {
       "velocity": 79,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335624408
+      "playedAt": 1509335624408,
+      "id": 77
     },
     {
       "header": 165,
@@ -789,7 +867,8 @@ export default {
       "velocity": 95,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335625173
+      "playedAt": 1509335625173,
+      "id": 78
     },
     {
       "header": 166,
@@ -799,7 +878,8 @@ export default {
       "velocity": 95,
       "fret": 5,
       "stringId": 3,
-      "playedAt": 1509335625409
+      "playedAt": 1509335625409,
+      "id": 79
     },
     {
       "header": 170,
@@ -809,7 +889,8 @@ export default {
       "velocity": 99,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335625824
+      "playedAt": 1509335625824,
+      "id": 80
     },
     {
       "header": 172,
@@ -819,7 +900,8 @@ export default {
       "velocity": 99,
       "fret": 0,
       "stringId": 3,
-      "playedAt": 1509335626072
+      "playedAt": 1509335626072,
+      "id": 81
     },
     {
       "header": 175,
@@ -829,7 +911,8 @@ export default {
       "velocity": 89,
       "fret": 3,
       "stringId": 4,
-      "playedAt": 1509335626478
+      "playedAt": 1509335626478,
+      "id": 82
     },
     {
       "header": 183,
@@ -839,7 +922,8 @@ export default {
       "velocity": 108,
       "fret": 2,
       "stringId": 4,
-      "playedAt": 1509335627524
+      "playedAt": 1509335627524,
+      "id": 83
     },
     {
       "header": 191,
@@ -849,7 +933,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335628548
+      "playedAt": 1509335628548,
+      "id": 84
     },
     {
       "header": 191,
@@ -859,7 +944,8 @@ export default {
       "velocity": 120,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335628559
+      "playedAt": 1509335628559,
+      "id": 85
     },
     {
       "header": 129,
@@ -869,7 +955,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335628807
+      "playedAt": 1509335628807,
+      "id": 86
     },
     {
       "header": 129,
@@ -879,7 +966,8 @@ export default {
       "velocity": 121,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335628829
+      "playedAt": 1509335628829,
+      "id": 87
     },
     {
       "header": 131,
@@ -889,7 +977,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335629110
+      "playedAt": 1509335629110,
+      "id": 88
     },
     {
       "header": 132,
@@ -899,7 +988,8 @@ export default {
       "velocity": 74,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335629155
+      "playedAt": 1509335629155,
+      "id": 89
     },
     {
       "header": 134,
@@ -909,7 +999,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335629392
+      "playedAt": 1509335629392,
+      "id": 90
     },
     {
       "header": 134,
@@ -919,7 +1010,8 @@ export default {
       "velocity": 101,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335629402
+      "playedAt": 1509335629402,
+      "id": 91
     },
     {
       "header": 136,
@@ -929,7 +1021,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335629685
+      "playedAt": 1509335629685,
+      "id": 92
     },
     {
       "header": 136,
@@ -939,7 +1032,8 @@ export default {
       "velocity": 120,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335629695
+      "playedAt": 1509335629695,
+      "id": 93
     },
     {
       "header": 138,
@@ -949,7 +1043,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335629910
+      "playedAt": 1509335629910,
+      "id": 94
     },
     {
       "header": 138,
@@ -959,7 +1054,8 @@ export default {
       "velocity": 41,
       "fret": 5,
       "stringId": 4,
-      "playedAt": 1509335629932
+      "playedAt": 1509335629932,
+      "id": 95
     },
     {
       "header": 140,
@@ -969,7 +1065,8 @@ export default {
       "velocity": 101,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335630201
+      "playedAt": 1509335630201,
+      "id": 96
     },
     {
       "header": 142,
@@ -979,7 +1076,8 @@ export default {
       "velocity": 95,
       "fret": 3,
       "stringId": 5,
-      "playedAt": 1509335630415
+      "playedAt": 1509335630415,
+      "id": 97
     },
     {
       "header": 144,
@@ -989,7 +1087,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335630675
+      "playedAt": 1509335630675,
+      "id": 98
     },
     {
       "header": 144,
@@ -999,7 +1098,8 @@ export default {
       "velocity": 40,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335630675
+      "playedAt": 1509335630675,
+      "id": 99
     },
     {
       "header": 145,
@@ -1009,7 +1109,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335630911
+      "playedAt": 1509335630911,
+      "id": 100
     },
     {
       "header": 145,
@@ -1019,7 +1120,8 @@ export default {
       "velocity": 41,
       "fret": 2,
       "stringId": 3,
-      "playedAt": 1509335630911
+      "playedAt": 1509335630911,
+      "id": 101
     },
     {
       "header": 148,
@@ -1029,7 +1131,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335631181
+      "playedAt": 1509335631181,
+      "id": 102
     },
     {
       "header": 149,
@@ -1039,7 +1142,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335631428
+      "playedAt": 1509335631428,
+      "id": 103
     },
     {
       "header": 151,
@@ -1049,7 +1153,8 @@ export default {
       "velocity": 123,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335631675
+      "playedAt": 1509335631675,
+      "id": 104
     },
     {
       "header": 153,
@@ -1059,7 +1164,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335631923
+      "playedAt": 1509335631923,
+      "id": 105
     },
     {
       "header": 156,
@@ -1069,7 +1175,8 @@ export default {
       "velocity": 78,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335632215
+      "playedAt": 1509335632215,
+      "id": 106
     },
     {
       "header": 157,
@@ -1079,7 +1186,8 @@ export default {
       "velocity": 68,
       "fret": 0,
       "stringId": 4,
-      "playedAt": 1509335632406
+      "playedAt": 1509335632406,
+      "id": 107
     },
     {
       "header": 159,
@@ -1089,7 +1197,8 @@ export default {
       "velocity": 120,
       "fret": 5,
       "stringId": 1,
-      "playedAt": 1509335632699
+      "playedAt": 1509335632699,
+      "id": 108
     },
     {
       "header": 165,
@@ -1099,7 +1208,8 @@ export default {
       "velocity": 122,
       "fret": 5,
       "stringId": 1,
-      "playedAt": 1509335633430
+      "playedAt": 1509335633430,
+      "id": 109
     },
     {
       "header": 168,
@@ -1109,7 +1219,8 @@ export default {
       "velocity": 104,
       "fret": 3,
       "stringId": 0,
-      "playedAt": 1509335633735
+      "playedAt": 1509335633735,
+      "id": 110
     },
     {
       "header": 170,
@@ -1119,7 +1230,8 @@ export default {
       "velocity": 113,
       "fret": 5,
       "stringId": 1,
-      "playedAt": 1509335634083
+      "playedAt": 1509335634083,
+      "id": 111
     },
     {
       "header": 173,
@@ -1129,7 +1241,8 @@ export default {
       "velocity": 125,
       "fret": 3,
       "stringId": 1,
-      "playedAt": 1509335634488
+      "playedAt": 1509335634488,
+      "id": 112
     },
     {
       "header": 176,
@@ -1139,7 +1252,8 @@ export default {
       "velocity": 125,
       "fret": 1,
       "stringId": 1,
-      "playedAt": 1509335634792
+      "playedAt": 1509335634792,
+      "id": 113
     },
     {
       "header": 183,
@@ -1149,7 +1263,8 @@ export default {
       "velocity": 125,
       "fret": 0,
       "stringId": 1,
-      "playedAt": 1509335635770
+      "playedAt": 1509335635770,
+      "id": 114
     }
   ]
 };
