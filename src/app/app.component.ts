@@ -55,10 +55,6 @@ export class AppComponent {
     return { ...sample, fret, stringId, playedAt };
   }
 
-  databaseSync (sample) {
-    this.realtime.addEvent(sample);
-  }
-
   isActiveNote ({ status }) {
     return status >= 0x90 && status < 0xa0;
   }
@@ -144,9 +140,10 @@ export class AppComponent {
   pushExpectedGameNotesToFirebase (game) {
     game.template.data
       .forEach(note => {
-        const playNoteAt = Math.max((note.playedAt - game.startTime) - game.timeBeforeNoteIsExpected, 0);
+        const playNoteAt = Math.max((note.playedAt - game.template.startTime) - game.timeBeforeNoteIsExpected, 0);
+        console.log('playNoteAt', playNoteAt);
         const timeout = setTimeout(() => {
-          this.databaseSync(note);
+          this.realtime.addEvent(note);
           clearTimeout(timeout);
         }, playNoteAt);
       });
@@ -166,6 +163,7 @@ export class AppComponent {
     // Note matches!
     if (matchingNote) {
       matchingNote.match = true;
+      this.realtime.updateEvent(matchingNote);
     }
   }
 
