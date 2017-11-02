@@ -22,6 +22,13 @@ export class AppComponent {
     data: []
   };
   demoRecording = track01;
+  game = {
+    template: track01,
+    startTime: null,
+    backingTrack: this.backingTrack,
+    input$: this.jamstik.midi,
+    timeAccuracy: 100, // In milliseconds, the less the more accurate
+  };
   // Standard tunning
   firstFrets = [64, 59, 55, 50, 45, 40];
 
@@ -121,6 +128,47 @@ export class AppComponent {
           clearTimeout(timeout);
         }, playNoteAt);
       });
+  }
+
+  playGame (game) {
+    game.startTime = Date.now();
+    game.backingTrack.play();
+    game.template.data = game.template.data
+      .map(note => this.setGameRelativeTime(note, game));
+    game.input$
+      .subscribe(data => this.onGameReceiveInput(data, game));
+  }
+
+  setGameRelativeTime (note, game) {
+      // Set relative start and end time for easier time match comparison
+      note.relativeStartTime = (note.playedAt - game.template.startTime) - game.timeAccuracy;
+      note.relativeEndTime = (note.playedAt - game.template.startTime) + game.timeAccuracy;
+      return note;
+  }
+
+  onGameReceiveInput (data, game) {
+    const sample = this.addMetadata(data);
+    const matchingNote = this.getMatchingNote(game, sample);
+
+    // Note matches!
+    if (matchingNote) {
+      matchingNote.match = true;
+    }
+  }
+
+  getMatchingNote (game, sample) {
+    return game.template.data
+      .filter(note => !note.match)
+      .find(note => this.findMatchingNote(note, sample, game));
+  }
+
+  findMatchingNote (note, input, game) {
+    const relativeInputPlayedAt =  input.playedAt - game.startTime;
+    return note.note === input.note
+      && note.stringId === input.stringId
+      && note.fret === input.fret
+      && note.relativeStartTime <= relativeInputPlayedAt
+      && note.relativeEndTime >= relativeInputPlayedAt;
   }
 
 }

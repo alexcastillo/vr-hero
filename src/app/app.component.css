@@ -1,0 +1,12 @@
+
+.note-status {
+    width: 10px;
+    height: 10px;
+    display: inline-flex;
+    border-radius: 50%;
+    background-color: lightgray;
+}
+
+.note-match {
+    background-color: limegreen;
+}
