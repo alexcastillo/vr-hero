@@ -112,6 +112,7 @@ export class AppComponent {
   }
 
   playRecording (recording) {
+    this.backingTrack.play();
     recording.data
       .forEach(sample => {
         const playNoteAt =  sample.playedAt - recording.startTime;
