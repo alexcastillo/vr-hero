@@ -28,6 +28,7 @@ export class AppComponent {
     backingTrack: this.backingTrack,
     input$: this.jamstik.midi,
     timeAccuracy: 100, // In milliseconds, the less the more accurate
+    timeBeforeNoteIsExpected: 3500 // In milliseconds, duration of notes from when they are added until they disappear
   };
   // Standard tunning
   firstFrets = [64, 59, 55, 50, 45, 40];
@@ -73,7 +74,6 @@ export class AppComponent {
     }
     if (this.isActiveNote(sample)) {
       this.playNote(sample);
-      this.databaseSync(sample);
       console.log(sample);
     }
   }
@@ -133,11 +133,23 @@ export class AppComponent {
 
   playGame (game) {
     game.startTime = Date.now();
+    this.pushExpectedGameNotesToFirebase(game);
     game.backingTrack.play();
     game.template.data = game.template.data
       .map(note => this.setGameRelativeTime(note, game));
     game.input$
       .subscribe(data => this.onGameReceiveInput(data, game));
+  }
+
+  pushExpectedGameNotesToFirebase (game) {
+    game.template.data
+      .forEach(note => {
+        const playNoteAt = Math.max((note.playedAt - game.startTime) - game.timeBeforeNoteIsExpected, 0);
+        const timeout = setTimeout(() => {
+          this.databaseSync(note);
+          clearTimeout(timeout);
+        }, playNoteAt);
+      });
   }
 
   setGameRelativeTime (note, game) {
