@@ -1,6 +1,6 @@
 <div>
   <section>
-    <h1>VH Hero</h1>
+    <h1>VR Hero</h1>
     <button (click)="scan()" *ngIf="!(connected$|async)"> Connect </button>
     <button (click)="disconnect()" *ngIf="connected$|async"> Disconnect </button>
     <instruments (onChange)="changeInstrument($event)"></instruments>
