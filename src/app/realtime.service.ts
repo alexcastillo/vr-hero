@@ -35,15 +35,4 @@ export class RealtimeService {
     ref.onDisconnect().remove();
     setTimeout(() => ref.remove(), EVENT_TIMEOUT);
   }
-
-  async updateEvent (e: INoteEvent) {
-    const snapshot = await this.songRef
-      .orderByChild('id')
-      .equalTo(e.id)
-      .once('value');
-
-      snapshot.forEach(child => {
-        child.ref.update(e);
-      });
-  }
 }

@@ -27,8 +27,8 @@ export class AppComponent {
     startTime: null,
     backingTrack: this.backingTrack,
     input$: this.jamstik.midi,
-    timeAccuracy: 100, // In milliseconds, the less the more accurate
-    timeBeforeNoteIsExpected: 3500 // In milliseconds, duration of notes from when they are added until they disappear
+    timeAccuracy: 250, // In milliseconds, the less the more accurate
+    timeBeforeNoteIsExpected: 2500 // In milliseconds, duration of notes from when they are added until they disappear
   };
   // Standard tunning
   firstFrets = [64, 59, 55, 50, 45, 40];
@@ -163,7 +163,7 @@ export class AppComponent {
     // Note matches!
     if (matchingNote) {
       matchingNote.match = true;
-      this.realtime.updateEvent(matchingNote);
+      this.realtime.addEvent(matchingNote);
     }
   }
 
