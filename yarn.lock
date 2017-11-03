@@ -2691,9 +2691,9 @@ istanbul-reports@^1.1.2:
   dependencies:
     handlebars "^4.0.3"
 
-jamstik@0.0.1:
+jamstik@alexcastillo/jamstik:
   version "0.0.1"
-  resolved "https://registry.yarnpkg.com/jamstik/-/jamstik-0.0.1.tgz#07f1e890114d979ff4fc7679e90dea2227e3befd"
+  resolved "https://codeload.github.com/alexcastillo/jamstik/tar.gz/70a683ad007f880f04cbeba6701fef33d2447c6e"
   dependencies:
     rxjs "^5.4.2"
 

@@ -1,6 +1,6 @@
 import { RealtimeService } from './realtime.service';
 import { Component } from '@angular/core';
-import Jamstik from 'jamstik';
+import Jamstik, { IMidiEvent } from 'jamstik';
 import Soundfont from 'soundfont-player';
 
 import track01 from '../assets/tracks/track-01';
@@ -48,7 +48,7 @@ export class AppComponent {
       });
   }
 
-  addMetadata (sample) {
+  addMetadata (sample: IMidiEvent) {
     const { status, note, velocity } = sample;
     const stringId = status - 0x90;
     const fret = note - this.firstFrets[stringId];
@@ -56,15 +56,15 @@ export class AppComponent {
     return { ...sample, fret, stringId, playedAt };
   }
 
-  isActiveNote ({ status }) {
+  isActiveNote ({ status }: Partial<IMidiEvent>) {
     return status >= 0x90 && status < 0xa0;
   }
 
-  isInactiveNote ({ status }) {
+  isInactiveNote ({ status }: Partial<IMidiEvent>) {
     return status >= 0x80 && status < 0x90;
   }
 
-  onMidi (sample) {
+  onMidi (sample: IMidiEvent) {
     const { status } = sample;
     if (this.isInactiveNote(sample)) {
       this.stopNote(sample);
@@ -75,7 +75,7 @@ export class AppComponent {
     }
   }
 
-  async playNote (sample) {
+  async playNote (sample: IMidiEvent) {
     const { note, velocity } = sample;
     if (!velocity) {
       return this.stopNote(sample);
@@ -84,7 +84,7 @@ export class AppComponent {
     this.playing[note] = guitar.play(note, null, {gain: velocity / 127.0});
   }
 
-  stopNote(sample) {
+  stopNote(sample: IMidiEvent) {
     const { note } = sample;
     if (this.playing[note]) {
       this.playing[note].stop();
@@ -92,7 +92,7 @@ export class AppComponent {
     }
   }
 
-  changeInstrument (instrumentId) {
+  changeInstrument (instrumentId: string) {
     this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
   }
 
