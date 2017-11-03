@@ -150,10 +150,10 @@ export class AppComponent {
   }
 
   setGameRelativeTime (note, game) {
-      // Set relative start and end time for easier time match comparison
-      note.relativeStartTime = (note.playedAt - game.template.startTime) - game.timeAccuracy;
-      note.relativeEndTime = (note.playedAt - game.template.startTime) + game.timeAccuracy;
-      return note;
+    // Set relative start and end time for easier time match comparison
+    note.relativeStartTime = (note.playedAt - game.template.startTime) - game.timeAccuracy;
+    note.relativeEndTime = (note.playedAt - game.template.startTime) + game.timeAccuracy;
+    return note;
   }
 
   onGameReceiveInput (data, game) {
