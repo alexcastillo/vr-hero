@@ -1,8 +1,12 @@
 <div>
   <section>
     <h1>VH Hero</h1>
-    <button (click)="scan()">Connect!</button>
+    <button (click)="scan()" *ngIf="!(connected$|async)"> Connect </button>
+    <button (click)="disconnect()" *ngIf="connected$|async"> Disconnect </button>
     <instruments (onChange)="changeInstrument($event)"></instruments>
+    <div *ngIf="connected$|async">
+      Connected to <strong>{{deviceName}}</strong>
+    </div>
   </section>
   <section>
     <h2>Recording</h2>
@@ -14,7 +18,7 @@
     <h2>Game</h2>
     <button (click)="playGame(game)">Play Game</button>
     <p>
-      <strong>Score</strong> {{ game.score }} notes | 
+      <strong>Score</strong> {{ game.score }} notes |
       <strong>Success rate</strong> {{ getGameSuccessRate(game) }}%
     </p>
     <div class="note" *ngFor="let note of game.template.data">

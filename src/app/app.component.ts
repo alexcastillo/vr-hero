@@ -1,7 +1,8 @@
-import { RealtimeService } from './realtime.service';
 import { Component } from '@angular/core';
 import Jamstik, { IMidiEvent } from 'jamstik';
 import Soundfont from 'soundfont-player';
+
+import { RealtimeService } from './realtime.service';
 
 import track01 from '../assets/tracks/track-01';
 
@@ -15,6 +16,7 @@ export class AppComponent {
   audioContext = new AudioContext();
   backingTrack = new Audio('./assets/backing-tracks/track-01.mp3');
   jamstik = new Jamstik();
+  connected$ = this.jamstik.connectionStatus;
   instrument = null;
   playing: {[key: number]: any} = {};
   recording = {
@@ -46,6 +48,14 @@ export class AppComponent {
       .subscribe(sample => {
         this.onMidi(this.addMetadata(sample));
       });
+  }
+
+  disconnect() {
+    this.jamstik.disconnect();
+  }
+
+  get deviceName() {
+    return this.jamstik.deviceName;
   }
 
   addMetadata (sample: IMidiEvent) {
