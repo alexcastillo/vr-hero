@@ -13,6 +13,10 @@
   <section>
     <h2>Game</h2>
     <button (click)="playGame(game)">Play Game</button>
+    <p>
+      <strong>Score</strong> {{ game.score }} notes | 
+      <strong>Success rate</strong> {{ getGameSuccessRate(game) }}%
+    </p>
     <div class="note" *ngFor="let note of game.template.data">
       String {{ note.stringId + 1 }} | Fret {{ note.fret }}
       <span [ngClass]="{ 'note-status': true, 'note-match': note.match }"></span>
