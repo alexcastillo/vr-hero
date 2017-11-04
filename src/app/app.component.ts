@@ -167,7 +167,7 @@ export class AppComponent {
     return note;
   }
 
-  onGameReceiveInput (data, game) {
+  onGameReceiveInput (data: IMidiEvent, game) {
     const sample = this.addMetadata(data);
     const matchingNote = this.getMatchingNote(game, sample);
 
@@ -180,7 +180,7 @@ export class AppComponent {
     } else {
       // Notes that don't match should have a lower volume
       this.onMidi({
-        ...sample,
+        ...data,
         velocity: game.mismatchVelocity
       });
     }
