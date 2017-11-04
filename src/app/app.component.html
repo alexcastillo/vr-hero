@@ -2,6 +2,7 @@
   <section>
     <h1>VR Hero</h1>
     <button (click)="scan()" *ngIf="!(connected$|async)"> Connect </button>
+    <button (click)="playNotes()" *ngIf="connected$|async"> Play Notes </button>
     <button (click)="disconnect()" *ngIf="connected$|async"> Disconnect </button>
     <instruments (onChange)="changeInstrument($event)"></instruments>
     <div *ngIf="connected$|async">

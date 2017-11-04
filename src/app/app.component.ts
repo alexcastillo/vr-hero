@@ -29,6 +29,7 @@ export class AppComponent {
     startTime: null,
     backingTrack: this.backingTrack,
     input$: this.jamstik.midi,
+    mismatchVelocity: 15,
     timeAccuracy: 250, // In milliseconds, the less the more accurate
     timeBeforeNoteIsExpected: 2500, // In milliseconds, duration of notes from when they are added until they disappear
     score: 0
@@ -40,10 +41,9 @@ export class AppComponent {
 
   async scan() {
     await this.jamstik.connect();
-    this.onConnect();
   }
 
-  onConnect () {
+  playNotes () {
     this.jamstik.midi
       .subscribe(sample => {
         this.onMidi(this.addMetadata(sample));
@@ -153,7 +153,6 @@ export class AppComponent {
     game.template.data
       .forEach(note => {
         const playNoteAt = Math.max((note.playedAt - game.template.startTime) - game.timeBeforeNoteIsExpected, 0);
-        console.log('playNoteAt', playNoteAt);
         const timeout = setTimeout(() => {
           this.realtime.addEvent(note);
           clearTimeout(timeout);
@@ -174,9 +173,16 @@ export class AppComponent {
 
     // Note matches!
     if (matchingNote) {
+      this.onMidi(sample);
       matchingNote.match = true;
       this.realtime.addEvent(matchingNote);
       game.score++;
+    } else {
+      // Notes that don't match should have a lower volume
+      this.onMidi({
+        ...sample,
+        velocity: game.mismatchVelocity
+      });
     }
   }
 
