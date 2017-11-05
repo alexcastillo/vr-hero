@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IMidiEvent } from 'jamstik';
+
+import { MidiService } from '../midi.service';
 
 @Component({
   selector: 'fretboard',
@@ -7,11 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FretboardComponent implements OnInit {
 
-  constructor() { }
+  @Input() notes;
+
+  constructor(private midi: MidiService) {
+  }
 
   strings = 6;
   frets = 6;
   grid = this.create();
+
+  ngOnInit () {
+    this.notes.subscribe(sample => {
+      const note = this.midi.addMetadata(sample);
+      console.log('note', note);
+      if (this.midi.isInactiveNote(note)) {
+        this.release(note);
+      }
+      if (this.midi.isActiveNote(note)) {
+        this.press(note);
+      }
+    });
+  }
 
   create (strings = this.strings, frets = this.frets) {
     return Array.from({ length: strings }, 
@@ -25,26 +44,19 @@ export class FretboardComponent implements OnInit {
     this.grid = this.create();
   }
 
-  press (notes = []) {
-    this.reset();
-    this.grid.map((string, stringIndex) =>
-      string.map((fret, fretIndex) => {
-        notes.forEach(note => {
-          if (note.string === stringIndex + 1
-            && note.fret === fretIndex + 1) {
-            fret.pressed = true;
-          };
-        });
-        return fret;
-      })
-    );
+  change (note, stop = false) {
+    const fret = this.grid[note.stringId][note.fret]
+    if (fret && !fret.pressed) {
+      fret.pressed = stop ? false : true;
+    }
   }
 
-  ngOnInit () {
-    this.press([
-      { string: 1, fret: 3 },
-      { string: 4, fret: 1 }
-    ]);
+  press (note) {
+    this.change(note);
+  }
+
+  release (note) {
+    this.change(note, true);
   }
 
 }

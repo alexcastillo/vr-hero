@@ -1,6 +1,7 @@
 <div class="fretboard">
-  <div *ngFor="let string of grid" class="string">
-    <div *ngFor="let fret of string"
+  <div *ngFor="let string of grid; let stringIndex = index"
+    [ngClass]="['string','string-' + stringIndex]">
+    <div *ngFor="let fret of string; let fretIndex = index"
       [ngClass]="{ 'fret': true, 'pressed': fret.pressed }">
     </div>
   </div>

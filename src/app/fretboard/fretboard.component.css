@@ -7,7 +7,7 @@
 }
 
 .fretboard.perspective {
-    perspective: 500px;
+    perspective: 700px;
     transform: rotate(90deg);
 }
 
