@@ -4,7 +4,7 @@ import { IMidiEvent } from 'jamstik';
 import { MidiService } from '../midi.service';
 
 @Component({
-  selector: 'fretboard',
+  selector: 'jamstik-fretboard',
   templateUrl: './fretboard.component.html',
   styleUrls: ['./fretboard.component.css']
 })
@@ -33,7 +33,7 @@ export class FretboardComponent implements OnInit {
   }
 
   create (strings = this.strings, frets = this.frets) {
-    return Array.from({ length: strings }, 
+    return Array.from({ length: strings },
       () => Array.from({ length: frets }, () => ({
         pressed: false
       }))
@@ -45,7 +45,7 @@ export class FretboardComponent implements OnInit {
   }
 
   change (note, stop = false) {
-    const fret = this.grid[note.stringId][note.fret]
+    const fret = this.grid[note.stringId][note.fret];
     if (fret && !fret.pressed) {
       fret.pressed = stop ? false : true;
     }

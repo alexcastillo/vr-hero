@@ -4,11 +4,11 @@
     <button (click)="scan()" *ngIf="!(connected$|async)"> Connect </button>
     <button (click)="playNotes()" *ngIf="connected$|async"> Play Notes </button>
     <button (click)="disconnect()" *ngIf="connected$|async"> Disconnect </button>
-    <instruments (onChange)="changeInstrument($event)"></instruments>
+    <jamstik-instruments (onChange)="changeInstrument($event)"></jamstik-instruments>
     <div *ngIf="connected$|async">
       Connected to <strong>{{deviceName}}</strong>
     </div>
-    <fretboard [notes]="jamstik.midi"></fretboard>
+    <jamstik-fretboard [notes]="jamstik.midi"></jamstik-fretboard>
   </section>
   <section>
     <h2>Recording</h2>
