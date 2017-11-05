@@ -1,0 +1,45 @@
+
+.fretboard {
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.fretboard.perspective {
+    perspective: 500px;
+    transform: rotate(90deg);
+}
+
+.fretboard.perspective .string {
+    transform: rotateY(126deg);
+}
+
+.string {
+    width: 100%;
+    height: calc(100% / 6);
+    box-sizing: border-box;
+    display: flex;
+}
+
+.fret {
+    flex: 1;
+    background: black;
+    border: 1px solid white;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 6px;
+}
+
+.fret.pressed:after {
+    content: "";
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: calc(50% - 17px);
+    transform: scale(1.3);
+    border-radius: 50%;
+    background: lime;
+    opacity: 0.8;
+    z-index: 1;
+}
