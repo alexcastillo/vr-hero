@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import Jamstik, { IMidiEvent } from 'jamstik';
 import Soundfont from 'soundfont-player';
 
+import { MidiService } from './midi.service';
 import { RealtimeService } from './realtime.service';
 
 import track01 from '../assets/tracks/track-01';
@@ -35,10 +36,8 @@ export class AppComponent {
     timeBeforeNoteIsExpected: 2500, // In milliseconds, duration of notes from when they are added until they disappear
     score: 0
   };
-  // Standard tunning
-  firstFrets = [64, 59, 55, 50, 45, 40];
 
-  constructor(private realtime: RealtimeService) {}
+  constructor(private realtime: RealtimeService, private midi: MidiService) {}
 
   async scan() {
     await this.jamstik.connect();
@@ -47,7 +46,7 @@ export class AppComponent {
   playNotes () {
     this.jamstik.midi
       .subscribe(sample => {
-        this.onMidi(this.addMetadata(sample));
+        this.onMidi(this.midi.addMetadata(sample));
       });
   }
 
@@ -59,28 +58,12 @@ export class AppComponent {
     return this.jamstik.deviceName;
   }
 
-  addMetadata (sample: IMidiEvent) {
-    const { status, note, velocity } = sample;
-    const stringId = status - 0x90;
-    const fret = note - this.firstFrets[stringId];
-    const playedAt = Date.now();
-    return { ...sample, fret, stringId, playedAt };
-  }
-
-  isActiveNote ({ status }: Partial<IMidiEvent>) {
-    return status >= 0x90 && status < 0xa0;
-  }
-
-  isInactiveNote ({ status }: Partial<IMidiEvent>) {
-    return status >= 0x80 && status < 0x90;
-  }
-
   onMidi (sample: IMidiEvent) {
     const { status } = sample;
-    if (this.isInactiveNote(sample)) {
+    if (this.midi.isInactiveNote(sample)) {
       this.stopNote(sample);
     }
-    if (this.isActiveNote(sample)) {
+    if (this.midi.isActiveNote(sample)) {
       this.playNote(sample);
       console.log(sample);
     }
@@ -114,9 +97,9 @@ export class AppComponent {
 
     this.jamstik.midi
       .subscribe(data => {
-        const sample = this.addMetadata(data);
+        const sample = this.midi.addMetadata(data);
         const id = this.recording.data.length;
-        if (this.isActiveNote(sample)) {
+        if (this.midi.isActiveNote(sample)) {
           this.recording.data.push({ ...sample, id });
         }
       });
@@ -171,7 +154,7 @@ export class AppComponent {
   }
 
   onGameReceiveInput (data: IMidiEvent, game) {
-    const sample = this.addMetadata(data);
+    const sample = this.midi.addMetadata(data);
     const matchingNote = this.getMatchingNote(game, sample);
 
     // Note matches!

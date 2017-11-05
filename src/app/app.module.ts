@@ -1,3 +1,4 @@
+import { MidiService } from './midi.service';
 import { RealtimeService } from './realtime.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,10 @@ import { FretboardComponent } from './fretboard/fretboard.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [RealtimeService],
+  providers: [
+    MidiService,
+    RealtimeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
