@@ -1,6 +1,7 @@
 import { RealtimeService } from './realtime.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { InstrumentsComponent } from './instruments/instruments.component';
@@ -11,7 +12,8 @@ import { InstrumentsComponent } from './instruments/instruments.component';
     InstrumentsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [RealtimeService],
   bootstrap: [AppComponent]

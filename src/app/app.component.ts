@@ -30,6 +30,7 @@ export class AppComponent {
     backingTrack: this.backingTrack,
     input$: this.jamstik.midi,
     mismatchVelocity: 15,
+    playbackRate: 0.7, // How slow the music runs
     timeAccuracy: 250, // In milliseconds, the less the more accurate
     timeBeforeNoteIsExpected: 2500, // In milliseconds, duration of notes from when they are added until they disappear
     score: 0
@@ -142,6 +143,7 @@ export class AppComponent {
     game.startTime = Date.now();
     game.score = 0;
     this.pushExpectedGameNotesToFirebase(game);
+    game.backingTrack.playbackRate = game.playbackRate;
     game.backingTrack.play();
     game.template.data = game.template.data
       .map(note => this.setGameRelativeTime(note, game));
@@ -152,9 +154,10 @@ export class AppComponent {
   pushExpectedGameNotesToFirebase (game) {
     game.template.data
       .forEach(note => {
-        const playNoteAt = Math.max((note.playedAt - game.template.startTime) - game.timeBeforeNoteIsExpected, 0);
+        const playNoteAt = Math.max((note.playedAt - game.template.startTime) - game.timeBeforeNoteIsExpected, 0) / game.playbackRate;
         const timeout = setTimeout(() => {
           this.realtime.addEvent(note);
+          console.log('NOTE');
           clearTimeout(timeout);
         }, playNoteAt);
       });
