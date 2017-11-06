@@ -6,7 +6,7 @@ import { JamstikService } from '../jamstik.service';
 @Component({
   selector: 'jamstik-fretboard',
   templateUrl: './fretboard.component.html',
-  styleUrls: ['./fretboard.component.css']
+  styleUrls: ['./fretboard.component.scss']
 })
 export class FretboardComponent implements OnInit {
 

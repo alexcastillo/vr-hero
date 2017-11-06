@@ -24,6 +24,7 @@
     "core-js": "^2.5.1",
     "firebase": "^4.6.0",
     "jamstik": "^0.0.3",
+    "materialize-css": "^0.100.2",
     "rxjs": "^5.5.2",
     "soundfont-player": "^0.10.6",
     "zone.js": "^0.8.18"

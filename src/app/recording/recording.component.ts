@@ -7,7 +7,7 @@ import track01 from '../../assets/tracks/track-01';
 @Component({
   selector: 'app-recording',
   templateUrl: './recording.component.html',
-  styleUrls: ['./recording.component.css']
+  styleUrls: ['./recording.component.scss']
 })
 export class RecordingComponent {
 

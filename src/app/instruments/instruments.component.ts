@@ -3,7 +3,7 @@ import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 @Component({
   selector: 'jamstik-instruments',
   templateUrl: './instruments.component.html',
-  styleUrls: ['./instruments.component.css']
+  styleUrls: ['./instruments.component.scss']
 })
 export class InstrumentsComponent implements OnInit {
 
