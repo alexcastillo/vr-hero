@@ -11,7 +11,9 @@ export class MidiService {
 
   addMetadata (sample: IMidiEvent) {
     const { status, note, velocity } = sample;
-    const stringId = status - 0x90;
+    const stringId = this.isActiveNote(sample)
+      ? status - 0x90
+      : status - 0x80;
     const fret = note - this.firstFrets[stringId];
     const playedAt = Date.now();
     return { ...sample, fret, stringId, playedAt };

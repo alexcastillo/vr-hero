@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { IMidiEvent } from 'jamstik';
 
 import { MidiService } from '../midi.service';
@@ -12,7 +12,7 @@ export class FretboardComponent implements OnInit {
 
   @Input() notes;
 
-  constructor(private midi: MidiService) {
+  constructor(private midi: MidiService, private zone: NgZone) {
   }
 
   strings = 6;
@@ -21,14 +21,15 @@ export class FretboardComponent implements OnInit {
 
   ngOnInit () {
     this.notes.subscribe(sample => {
-      const note = this.midi.addMetadata(sample);
-      console.log('note', note);
-      if (this.midi.isInactiveNote(note)) {
-        this.release(note);
-      }
-      if (this.midi.isActiveNote(note)) {
-        this.press(note);
-      }
+      this.zone.run(() => {
+        const note = this.midi.addMetadata(sample);
+        if (this.midi.isInactiveNote(note)) {
+          this.release(note);
+        }
+        if (this.midi.isActiveNote(note)) {
+          this.press(note);
+        }
+      });
     });
   }
 
@@ -46,9 +47,7 @@ export class FretboardComponent implements OnInit {
 
   change (note, stop = false) {
     const fret = this.grid[note.stringId][note.fret];
-    if (fret && !fret.pressed) {
-      fret.pressed = stop ? false : true;
-    }
+    fret.pressed = !stop;
   }
 
   press (note) {

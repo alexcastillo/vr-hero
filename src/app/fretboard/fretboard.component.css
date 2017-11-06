@@ -22,6 +22,10 @@
     display: flex;
 }
 
+.string .fret:nth-child(1) {
+    flex: 0.05;
+}
+
 .fret {
     flex: 1;
     background: black;
