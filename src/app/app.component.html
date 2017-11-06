@@ -1,26 +1,4 @@
-<div>
-  <section>
-    <app-navigation></app-navigation>
-    <jamstik-fretboard></jamstik-fretboard>
-  </section>
-  <section>
-    <h2>Recording</h2>
-    <button (click)="startRecording()">Start Recording</button>
-    <button (click)="stopRecording()">Stop Recording</button>
-    <button (click)="playRecording(demoRecording)">Play Demo Recording</button>
-  </section>
-  <section>
-    <h2>Game</h2>
-    <button (click)="playGame(game)">Play Game</button>
-    Playback Rate <input type="number" name="playRate" step="0.1" [(ngModel)]="game.playbackRate" />
-    <p>
-      <strong>Score</strong> {{ game.score }} notes |
-      <strong>Success rate</strong> {{ getGameSuccessRate(game) }}%
-    </p>
-    <div class="note" *ngFor="let note of game.template.data">
-      String {{ note.stringId + 1 }} | Fret {{ note.fret }}
-      <span [ngClass]="{ 'note-status': true, 'note-match': note.match }"></span>
-    </div>
-  </section>
-</div>
-
+<section>
+  <app-navigation></app-navigation>
+  <router-outlet></router-outlet>
+</section>

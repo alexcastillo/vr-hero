@@ -1,5 +1,10 @@
 <nav>
   <h1>Jamstik</h1>
+  <ul class="nav navbar-nav">
+    <li><a routerLink="/fretboard">Fretboard</a></li>
+    <li><a routerLink="/game">Game</a></li>
+    <li><a routerLink="/recording">Recording</a></li>
+  </ul>
   <aside>
     <button (click)="jamstikService.scan()" *ngIf="!(jamstikService.connected$|async)"> Connect </button>
     <button (click)="jamstikService.disconnect()" *ngIf="jamstikService.connected$|async"> Disconnect </button>
