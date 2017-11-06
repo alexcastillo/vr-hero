@@ -1,0 +1,11 @@
+<nav>
+  <h1>Jamstik</h1>
+  <aside>
+    <button (click)="jamstikService.scan()" *ngIf="!(jamstikService.connected$|async)"> Connect </button>
+    <button (click)="jamstikService.disconnect()" *ngIf="jamstikService.connected$|async"> Disconnect </button>
+    <jamstik-instruments (onChange)="jamstikService.changeInstrument($event)"></jamstik-instruments>
+    <div *ngIf="jamstikService.connected$|async">
+      Connected to <strong>{{deviceName}}</strong>
+    </div>
+  </aside>
+</nav>

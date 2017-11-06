@@ -10,8 +10,6 @@ import { JamstikService } from '../jamstik.service';
 })
 export class FretboardComponent implements OnInit {
 
-  @Input() notes;
-
   constructor(private jamstikService: JamstikService, private zone: NgZone) {
   }
 
@@ -20,7 +18,7 @@ export class FretboardComponent implements OnInit {
   grid = this.create();
 
   ngOnInit () {
-    this.notes.subscribe(sample => {
+    this.jamstikService.jamstik.midi.subscribe(sample => {
       this.zone.run(() => {
         const note = this.jamstikService.addMetadata(sample);
         if (this.jamstikService.isInactiveNote(note)) {

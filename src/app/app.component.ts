@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import Jamstik, { IMidiEvent } from 'jamstik';
-import Soundfont from 'soundfont-player';
+import { IMidiEvent } from 'jamstik';
 
 import { JamstikService } from './jamstik.service';
 import { RealtimeService } from './realtime.service';
@@ -14,12 +13,7 @@ import track01 from '../assets/tracks/track-01';
 })
 export class AppComponent {
 
-  audioContext = new AudioContext();
   backingTrack = new Audio('./assets/backing-tracks/track-01.mp3');
-  jamstik = new Jamstik();
-  connected$ = this.jamstik.connectionStatus;
-  instrument = null;
-  playing: {[key: number]: any} = {};
   recording = {
     startTime: null,
     data: []
@@ -29,7 +23,7 @@ export class AppComponent {
     template: track01,
     startTime: null,
     backingTrack: this.backingTrack,
-    input$: this.jamstik.midi,
+    input$: this.jamstikService.jamstik.midi,
     mismatchVelocity: 15,
     playbackRate: 0.7, // How slow the music runs
     timeAccuracy: 250, // In milliseconds, the less the more accurate
@@ -39,63 +33,12 @@ export class AppComponent {
 
   constructor(private realtime: RealtimeService, private jamstikService: JamstikService) {}
 
-  async scan() {
-    await this.jamstik.connect();
-  }
-
-  playNotes () {
-    this.jamstik.midi
-      .subscribe(sample => {
-        this.onMidi(this.jamstikService.addMetadata(sample));
-      });
-  }
-
-  disconnect() {
-    this.jamstik.disconnect();
-  }
-
-  get deviceName() {
-    return this.jamstik.deviceName;
-  }
-
-  onMidi (sample: IMidiEvent) {
-    const { status } = sample;
-    if (this.jamstikService.isInactiveNote(sample)) {
-      this.stopNote(sample);
-    }
-    if (this.jamstikService.isActiveNote(sample)) {
-      this.playNote(sample);
-      console.log(sample);
-    }
-  }
-
-  async playNote (sample: IMidiEvent) {
-    const { note, velocity } = sample;
-    if (!velocity) {
-      return this.stopNote(sample);
-    }
-    const guitar = await this.instrument;
-    this.playing[note] = guitar.play(note, null, {gain: velocity / 127.0});
-  }
-
-  stopNote(sample: IMidiEvent) {
-    const { note } = sample;
-    if (this.playing[note]) {
-      this.playing[note].stop();
-      this.playing[note] = null;
-    }
-  }
-
-  changeInstrument (instrumentId: string) {
-    this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
-  }
-
   startRecording () {
     this.recording.data.length = 0;
     this.recording.startTime = Date.now();
     this.backingTrack.play();
 
-    this.jamstik.midi
+    this.jamstikService.jamstik.midi
       .subscribe(data => {
         const sample = this.jamstikService.addMetadata(data);
         const id = this.recording.data.length;
@@ -116,7 +59,7 @@ export class AppComponent {
       .forEach(sample => {
         const playNoteAt =  sample.playedAt - recording.startTime;
         const timeout = setTimeout(() => {
-          this.playNote(sample);
+          this.jamstikService.playNote(sample);
           clearTimeout(timeout);
         }, playNoteAt);
       });
@@ -159,13 +102,13 @@ export class AppComponent {
 
     // Note matches!
     if (matchingNote) {
-      this.onMidi(sample);
+      this.jamstikService.onMidi(sample);
       matchingNote.match = true;
       this.realtime.addEvent(matchingNote);
       game.score++;
     } else {
       // Notes that don't match should have a lower volume
-      this.onMidi({
+      this.jamstikService.onMidi({
         ...data,
         velocity: game.mismatchVelocity
       });

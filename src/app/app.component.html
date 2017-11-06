@@ -1,14 +1,7 @@
 <div>
   <section>
-    <h1>VR Hero</h1>
-    <button (click)="scan()" *ngIf="!(connected$|async)"> Connect </button>
-    <button (click)="playNotes()" *ngIf="connected$|async"> Play Notes </button>
-    <button (click)="disconnect()" *ngIf="connected$|async"> Disconnect </button>
-    <jamstik-instruments (onChange)="changeInstrument($event)"></jamstik-instruments>
-    <div *ngIf="connected$|async">
-      Connected to <strong>{{deviceName}}</strong>
-    </div>
-    <jamstik-fretboard [notes]="jamstik.midi"></jamstik-fretboard>
+    <app-navigation></app-navigation>
+    <jamstik-fretboard></jamstik-fretboard>
   </section>
   <section>
     <h2>Recording</h2>
