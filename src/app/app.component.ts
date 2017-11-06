@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import Jamstik, { IMidiEvent } from 'jamstik';
 import Soundfont from 'soundfont-player';
 
-import { MidiService } from './midi.service';
+import { JamstikService } from './jamstik.service';
 import { RealtimeService } from './realtime.service';
 
 import track01 from '../assets/tracks/track-01';
@@ -37,7 +37,7 @@ export class AppComponent {
     score: 0
   };
 
-  constructor(private realtime: RealtimeService, private midi: MidiService) {}
+  constructor(private realtime: RealtimeService, private jamstikService: JamstikService) {}
 
   async scan() {
     await this.jamstik.connect();
@@ -46,7 +46,7 @@ export class AppComponent {
   playNotes () {
     this.jamstik.midi
       .subscribe(sample => {
-        this.onMidi(this.midi.addMetadata(sample));
+        this.onMidi(this.jamstikService.addMetadata(sample));
       });
   }
 
@@ -60,10 +60,10 @@ export class AppComponent {
 
   onMidi (sample: IMidiEvent) {
     const { status } = sample;
-    if (this.midi.isInactiveNote(sample)) {
+    if (this.jamstikService.isInactiveNote(sample)) {
       this.stopNote(sample);
     }
-    if (this.midi.isActiveNote(sample)) {
+    if (this.jamstikService.isActiveNote(sample)) {
       this.playNote(sample);
       console.log(sample);
     }
@@ -97,9 +97,9 @@ export class AppComponent {
 
     this.jamstik.midi
       .subscribe(data => {
-        const sample = this.midi.addMetadata(data);
+        const sample = this.jamstikService.addMetadata(data);
         const id = this.recording.data.length;
-        if (this.midi.isActiveNote(sample)) {
+        if (this.jamstikService.isActiveNote(sample)) {
           this.recording.data.push({ ...sample, id });
         }
       });
@@ -154,7 +154,7 @@ export class AppComponent {
   }
 
   onGameReceiveInput (data: IMidiEvent, game) {
-    const sample = this.midi.addMetadata(data);
+    const sample = this.jamstikService.addMetadata(data);
     const matchingNote = this.getMatchingNote(game, sample);
 
     // Note matches!

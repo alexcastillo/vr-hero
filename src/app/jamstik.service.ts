@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IMidiEvent } from 'jamstik';
 
 @Injectable()
-export class MidiService {
+export class JamstikService {
 
   constructor() { }
 
