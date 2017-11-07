@@ -19,16 +19,16 @@
       <li><a routerLink="/fretboard">Fretboard</a></li>
       <li><a routerLink="/game">Game</a></li>
       <li><a routerLink="/recording">Recording</a></li>
-      <li>
+      <li *ngIf="!(jamstikService.connected$|async)">
         <button class="btn waves-effect waves-light red"
-          (click)="jamstikService.scan()" *ngIf="!(jamstikService.connected$|async)">
+          (click)="jamstikService.scan()">
           Connect
           <i class="material-icons right">bluetooth</i>
         </button>
       </li>
-      <li>
+      <li *ngIf="jamstikService.connected$|async">
         <button class="btn waves-effect waves-light red"
-          (click)="jamstikService.disconnect()" *ngIf="jamstikService.connected$|async">
+          (click)="jamstikService.disconnect()">
           Disconnect
           <i class="material-icons right">bluetooth_disabled</i>
         </button>

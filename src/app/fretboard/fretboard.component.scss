@@ -2,7 +2,7 @@
 :host {
     display: flex;
     width: 100vw;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 200px);
     justify-content: center;
     align-items: center;
 }
@@ -18,7 +18,7 @@
 }
 
 .fretboard.perspective {
-    height: 330px;
+    height: 530px;
     max-width: 1000px;
     perspective: 1000px;
     transform: rotate(90deg);
@@ -26,13 +26,17 @@
     align-self: center;
 
     & .string {
-        transform: rotateY(-50deg);
+        transform: rotateY(-40deg);
         & .fret {
             &:nth-child(1) {
-                flex: 0.3;
+                flex: 0.2;
             }
             margin: 2px 6px;
         }
+    }
+
+    & .fret.pressed:not(:first-child):after {
+        transform: scale(2) translate(0%, 35%);
     }
 }
 
@@ -54,17 +58,20 @@
     box-sizing: border-box;
     position: relative;
     border-radius: 6px;
-}
 
-.fret.pressed:after {
-    content: "";
-    position: absolute;
-    width: 34px;
-    height: 34px;
-    left: calc(50% - 17px);
-    transform: scale(1.3);
-    border-radius: 50%;
-    background: orange;
-    opacity: 0.8;
-    z-index: 1;
+    &.pressed:first-child {
+        background: orange;
+    }
+
+    &.pressed:not(:first-child):after {
+        content: "";
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        left: calc(50% - 17px);
+        border-radius: 50%;
+        background: orange;
+        opacity: 0.8;
+        z-index: 1;
+    }
 }
