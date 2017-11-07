@@ -1,16 +1,30 @@
 <nav>
-  <h1>Jamstik</h1>
-  <ul class="nav navbar-nav">
-    <li><a routerLink="/fretboard">Fretboard</a></li>
-    <li><a routerLink="/game">Game</a></li>
-    <li><a routerLink="/recording">Recording</a></li>
-  </ul>
-  <aside>
-    <button (click)="jamstikService.scan()" *ngIf="!(jamstikService.connected$|async)"> Connect </button>
-    <button (click)="jamstikService.disconnect()" *ngIf="jamstikService.connected$|async"> Disconnect </button>
-    <jamstik-instruments (onChange)="jamstikService.changeInstrument($event)"></jamstik-instruments>
-    <div *ngIf="jamstikService.connected$|async">
-      Connected to <strong>{{deviceName}}</strong>
-    </div>
-  </aside>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Jamstik+</a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a routerLink="/fretboard">Fretboard</a></li>
+      <li><a routerLink="/game">Game</a></li>
+      <li><a routerLink="/recording">Recording</a></li>
+      <li>
+        <button class="btn waves-effect waves-light red"
+          (click)="jamstikService.scan()" *ngIf="!(jamstikService.connected$|async)">
+          Connect
+          <i class="material-icons right">bluetooth</i>
+        </button>
+      </li>
+      <li>
+        <button class="btn waves-effect waves-light red"
+          (click)="jamstikService.disconnect()" *ngIf="jamstikService.connected$|async">
+          Disconnect
+          <i class="material-icons right">bluetooth_disabled</i>
+        </button>
+      </li>
+    </ul>
+    <aside>
+      <jamstik-instruments (onChange)="jamstikService.changeInstrument($event)"></jamstik-instruments>
+      <div *ngIf="jamstikService.connected$|async">
+        Connected to <strong>{{deviceName}}</strong>
+      </div>
+    </aside>
+  </div>
 </nav>

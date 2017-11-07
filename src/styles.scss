@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("//fonts.googleapis.com/icon?family=Material+Icons");
+@import url("//fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url("//cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css");
+
+body {
+    background: #0994D9;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    background: #222222;
+    padding: 0 20px;
+
+    & .brand-logo {
+        font-weight: 200;
+    }
+
+    .nav-wrapper i {
+        height: auto;
+        line-height: 35px;
+    }
+
+    ul li {
+        margin-left: 12px;
+    }
+}
