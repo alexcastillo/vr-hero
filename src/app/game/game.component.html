@@ -1,13 +1,17 @@
-<section>
-  <h2>Game</h2>
-  <button (click)="playGame(game)">Play Game</button>
-  Playback Rate <input type="number" name="playRate" step="0.1" [(ngModel)]="game.playbackRate" />
+<section class="container">
+  <div class="controls">
+    <button class="btn red" (click)="playGame(game)">Play Game</button>
+    <div>Playback Rate</div>
+    <input type="number" name="playRate" step="0.1" [(ngModel)]="game.playbackRate" />
+  </div>
   <p>
     <strong>Score</strong> {{ game.score }} notes |
     <strong>Success rate</strong> {{ getGameSuccessRate(game) }}%
   </p>
-  <div class="note" *ngFor="let note of game.template.data">
-    String {{ note.stringId + 1 }} | Fret {{ note.fret }}
-    <span [ngClass]="{ 'note-status': true, 'note-match': note.match }"></span>
+  <div class="game-notes">
+    <div  *ngFor="let note of game.template.data"
+      [ngClass]="{ 'note': true, 'match': note.match }">
+      String {{ note.stringId + 1 }} | Fret {{ note.fret }}
+    </div>
   </div>
 </section>

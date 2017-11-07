@@ -7,6 +7,7 @@
 body {
     background: #0994D9;
     font-family: 'Roboto', sans-serif;
+    padding-top: 85px;
 }
 
 nav {
@@ -14,6 +15,9 @@ nav {
     padding: 0 20px;
     position: fixed;
     z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
 
     & .brand-logo {
         font-weight: 200;
