@@ -1,7 +1,21 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo">Jamstik+</a>
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
+    <a routerLink="/fretboard" class="brand-logo">
+      Jamstik+
+    </a>
+    <ul class="secondary-nav">
+      <li>
+        <jamstik-instruments
+          (onChange)="jamstikService.changeInstrument($event)">
+        </jamstik-instruments>
+      </li>
+      <li>
+        <a *ngIf="jamstikService.connected$|async">
+          Connected to <strong>{{jamstikService.deviceName}}</strong>
+        </a>
+      </li>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a routerLink="/fretboard">Fretboard</a></li>
       <li><a routerLink="/game">Game</a></li>
       <li><a routerLink="/recording">Recording</a></li>
@@ -20,11 +34,5 @@
         </button>
       </li>
     </ul>
-    <aside>
-      <jamstik-instruments (onChange)="jamstikService.changeInstrument($event)"></jamstik-instruments>
-      <div *ngIf="jamstikService.connected$|async">
-        Connected to <strong>{{deviceName}}</strong>
-      </div>
-    </aside>
   </div>
 </nav>

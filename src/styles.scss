@@ -26,3 +26,17 @@ nav {
         margin-left: 12px;
     }
 }
+
+.secondary-nav {
+    float: left;
+    margin-left: 159px;
+    border-left: 1px solid rgba(255,255,255,0.3);
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    select {
+        background: transparent;
+        height: 33px;
+    }
+}
