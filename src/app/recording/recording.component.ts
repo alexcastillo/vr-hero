@@ -28,10 +28,9 @@ export class RecordingComponent {
     this.backingTrack.play();
 
     this.jamstikService.jamstik.midi
-      .subscribe(data => {
-        const sample = this.jamstikService.addMetadata(data);
+      .subscribe(sample => {
         const id = this.recording.data.length;
-        if (this.jamstikService.isActiveNote(sample)) {
+        if (this.jamstikService.isOnFilter(sample)) {
           this.recording.data.push({ ...sample, id });
         }
       });

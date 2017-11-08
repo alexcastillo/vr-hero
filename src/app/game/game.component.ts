@@ -47,7 +47,6 @@ export class GameComponent {
         const playNoteAt = Math.max((note.playedAt - game.template.startTime) - game.timeBeforeNoteIsExpected, 0) / game.playbackRate;
         const timeout = setTimeout(() => {
           this.realtime.addEvent(note);
-          console.log('NOTE');
           clearTimeout(timeout);
         }, playNoteAt);
       });
@@ -60,20 +59,19 @@ export class GameComponent {
     return note;
   }
 
-  onGameReceiveInput (data: IMidiEvent, game) {
-    const sample = this.jamstikService.addMetadata(data);
+  onGameReceiveInput (sample: IMidiEvent, game) {
     const matchingNote = this.getMatchingNote(game, sample);
 
     // Note matches!
     if (matchingNote) {
-      this.jamstikService.onMidi(sample);
+      this.jamstikService.handleSound(sample);
       matchingNote.match = true;
       this.realtime.addEvent(matchingNote);
       game.score++;
     } else {
       // Notes that don't match should have a lower volume
-      this.jamstikService.onMidi({
-        ...data,
+      this.jamstikService.handleSound({
+        ...sample,
         velocity: game.mismatchVelocity
       });
     }

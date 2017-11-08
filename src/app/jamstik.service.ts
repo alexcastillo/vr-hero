@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import Jamstik, { IMidiEvent } from 'jamstik';
+import Jamstik, { IMidiEvent, isOnFilter, isOffFilter } from 'jamstik';
 import Soundfont from 'soundfont-player';
 
 @Injectable()
@@ -12,11 +12,12 @@ export class JamstikService {
   connected$ = this.jamstik.connectionStatus;
   instrument = Soundfont.instrument(this.audioContext, 'acoustic_guitar_nylon');;
   playing: { [ key: number ]: any } = {};
-  firstFrets = [64, 59, 55, 50, 45, 40]; // Standard tunning
+  isOnFilter = isOnFilter;
+  isOffFilter = isOffFilter;
 
   async scan() {
     await this.jamstik.connect();
-    this.playNotes();
+    this.addSound();
   }
 
   disconnect() {
@@ -27,22 +28,19 @@ export class JamstikService {
     return this.jamstik.deviceName;
   }
 
-  onMidi (sample: IMidiEvent) {
-    const { status } = sample;
-    if (this.isInactiveNote(sample)) {
-      this.stopNote(sample);
-    }
-    if (this.isActiveNote(sample)) {
+  addSound () {
+    this.jamstik.midi
+      .subscribe(sample => this.handleSound(sample));
+  }
+
+  handleSound (sample: IMidiEvent) {
+    if (isOnFilter(sample)) {
       this.playNote(sample);
       console.log(sample);
     }
-  }
-
-  playNotes () {
-    this.jamstik.midi
-      .subscribe(sample => {
-        this.onMidi(this.addMetadata(sample));
-      });
+    if (isOffFilter(sample)) {
+      this.stopNote(sample);
+    }
   }
 
   async playNote (sample: IMidiEvent) {
@@ -69,23 +67,4 @@ export class JamstikService {
       this.instrument = Soundfont.instrument(this.audioContext, instrumentId);
     });
   }
-
-  addMetadata (sample: IMidiEvent) {
-    const { status, note, velocity } = sample;
-    const stringId = this.isActiveNote(sample)
-      ? status - 0x90
-      : status - 0x80;
-    const fret = note - this.firstFrets[stringId];
-    const playedAt = Date.now();
-    return { ...sample, fret, stringId, playedAt };
-  }
-
-  isActiveNote ({ status }: Partial<IMidiEvent>) {
-    return status >= 0x90 && status < 0xa0;
-  }
-
-  isInactiveNote ({ status }: Partial<IMidiEvent>) {
-    return status >= 0x80 && status < 0x90;
-  }
-
 }
